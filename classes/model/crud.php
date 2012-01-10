@@ -6,7 +6,7 @@
  * @version    1.0
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2011 Fuel Development Team
+ * @copyright  2010 - 2012 Fuel Development Team
  * @link       http://fuelphp.com
  */
 
@@ -614,7 +614,7 @@ class Model_Crud extends \Model implements \Iterator, \ArrayAccess {
 	 */
 	public function offsetExists($offset)
 	{
-		return isset($this->{$offset});
+		return property_exists($this, $offset);
 	}
 
 	/**
@@ -636,7 +636,7 @@ class Model_Crud extends \Model implements \Iterator, \ArrayAccess {
 	 */
 	public function offsetGet($offset)
 	{
-		if (isset($this->{$offset}))
+		if (property_exists($this, $offset))
 		{
 			return $this->{$offset};
 		}

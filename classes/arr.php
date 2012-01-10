@@ -6,7 +6,7 @@
  * @version    1.0
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2011 Fuel Development Team
+ * @copyright  2010 - 2012 Fuel Development Team
  * @link       http://fuelphp.com
  */
 
@@ -380,6 +380,27 @@ class Arr
 
 		array_splice($original, $pos, 0, $value);
 		return true;
+	}
+
+	/**
+	 * Insert value(s) into an array before a specific key
+	 * WARNING: original array is edited by reference, only boolean success is returned
+	 *
+	 * @param   array        the original array (by reference)
+	 * @param   array|mixed  the value(s) to insert, if you want to insert an array it needs to be in an array itself
+	 * @param   string|int   the key before which to insert
+	 * @return  bool         false when key isn't found in the array, otherwise true
+	 */
+	public static function insert_before_key(array &$original, $value, $key)
+	{
+		$pos = array_search($key, array_keys($original));
+		if ($pos === false)
+		{
+			\Error::notice('Unknown key before which to insert the new value into the array.');
+			return false;
+		}
+
+		return static::insert($original, $value, $pos);
 	}
 
 	/**

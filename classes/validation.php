@@ -6,7 +6,7 @@
  * @version    1.0
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2011 Fuel Development Team
+ * @copyright  2010 - 2012 Fuel Development Team
  * @link       http://fuelphp.com
  */
 
@@ -165,16 +165,18 @@ class Validation
 	/**
 	 * Simpler alias for Validation->add()
 	 *
-	 * @param   string      Field name
-	 * @param   string      Field label
-	 * @param   string      Rules as a piped string
+	 * @param   string  Field name
+	 * @param   string  Field label
+	 * @param   string  Rules as a piped string
 	 * @return  Fieldset_Field  $this to allow chaining
+	 * @depricated  Remove in v2.0, passing rules as string is to be removed use add() instead
 	 */
 	public function add_field($name, $label, $rules)
 	{
 		$field = $this->add($name, $label);
 
 		$rules = explode('|', $rules);
+
 		foreach ($rules as $rule)
 		{
 			if (($pos = strpos($rule, '[')) !== false)
