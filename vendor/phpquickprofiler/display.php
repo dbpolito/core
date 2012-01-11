@@ -55,7 +55,7 @@ function displayPqp($output) {
 .pqp-side var{text-shadow:#444 1px 1px 1px}
 .pQp var{font-size:23px;font-weight:bold;font-style:normal;margin:0 0 3px 0;display:block}
 .pQp h4{font-size:12px;color:#fff;margin:0 0 4px 0}
-.pQp .main{width:80%;}
+.pQp .main{float:left;width:80%;}
 .pQp .main table{width:100%;}
 *+html .pQp .main{width:78%}
 * html .pQp .main{width:77%}
@@ -122,7 +122,7 @@ CSS
 	$return_output .=<<<JAVASCRIPT
 <!-- JavaScript -->
 <script type="text/javascript">
-	var PQP_DETAILS = true;
+	var PQP_DETAILS = false;
 	var PQP_HEIGHT = "short";
 
 	addEvent(window, 'load', loadCSS);
@@ -174,7 +174,7 @@ CSS
 		var container = document.getElementById('pqp-container');
 		if (container.style.position == "inherit")
 		{
-			container.style.position="absolute";
+			container.style.position="fixed";
 		}
 		else
 		{
@@ -241,7 +241,7 @@ CSS
 </script>
 JAVASCRIPT;
 
-	$return_output .='<div id="pqp-container" class="pQp" style="display:none;position:inherit;">';
+	$return_output .='<div id="pqp-container" class="pQp hideDetails" style="display:none;position:fixed;">';
 
 $logCount = count($output['logs']['console']);
 $fileCount = count($output['files']);
