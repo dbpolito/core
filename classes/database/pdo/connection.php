@@ -168,9 +168,19 @@ class Database_PDO_Connection extends \Database_Connection
 		}
 		elseif ($type === \DB::INSERT)
 		{
+			if ($this->_db_type == 'pgsql')
+			{
+				preg_match("/^INSERT[\t\n ]+INTO[\t\n ]+([a-z0-9\_\-\"]+)/is", $sql, $table);
+				$table = str_replace('"', '', $table[1]).'_id_seq';
+			}
+			else
+			{
+				$table = null;
+			}
+
 			// Return a list of insert id and rows created
 			return array(
-				$this->_connection->lastInsertId(),
+				$this->_connection->lastInsertId($table),
 				$result->rowCount(),
 			);
 		}
